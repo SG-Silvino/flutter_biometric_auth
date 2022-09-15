@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dev_100ideia.flutter_biometric_auth.flutter_biometric_auth">
-   <application
+    package="com.dev_100ideia.flutter_biometric_auth">
+    
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+    <application
         android:label="flutter_biometric_auth"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
@@ -31,4 +33,5 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    
 </manifest>
