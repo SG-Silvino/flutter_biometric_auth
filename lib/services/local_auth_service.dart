@@ -5,14 +5,18 @@ class LocalAuthService {
     LocalAuthentication auth = LocalAuthentication();
 
     final bool canAuthenticateWithBiometrics = await auth.canCheckBiometrics;
-    return canAuthenticateWithBiometrics || await auth.isDeviceSupported();
+    final bool isDeviceSupported = await auth.isDeviceSupported();
+    final hasBiometric = canAuthenticateWithBiometrics && isDeviceSupported;
+
+    return hasBiometric;
   }
 
-  auth({
+  biometricAuth({
     String? msg,
     Function()? onSuccess,
     Function()? onFail,
-    AuthenticationOptions options = const AuthenticationOptions(),
+    AuthenticationOptions options =
+        const AuthenticationOptions(biometricOnly: true),
   }) async {
     LocalAuthentication auth = LocalAuthentication();
     final isLocalAuthAvailable = await isBiometricAvailable();
